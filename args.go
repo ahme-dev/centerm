@@ -2,8 +2,8 @@ package main
 
 import (
 	"os"
-//	"regexp"
-//	"strings"
+	"regexp"
+	"strings"
 )
 
 //returns one arg, if non-existent return "no argument"
@@ -56,16 +56,16 @@ func getArgsOneString(selLen uint8) string {
 }
 
 //returns the given hyphen input as map
-//not in use
-//func getArgsHyphen() map[string]string {
-//	var flagsArg = make(map[string]string)
-//	var fPattern = regexp.MustCompile(`(-\w{1,}) (\w{1,})`)
-//	var argsSlice = fPattern.FindAllString(getArgsOneString(5), 2)
-//
-//	for _,n := range argsSlice {
-//		cutSlice := strings.Split(n, " ")
-//		flagsArg[cutSlice[0]] = cutSlice[1]
-//	}
-//
-//	return flagsArg
-//}
+func getArgsHyphen() (flagsArg []string) {
+	var fPattern = regexp.MustCompile(`(-\w{1,}) (\w{1,})`)
+	var argsSlice = fPattern.FindAllString(getArgsOneString(5), 2)
+	var counter int
+
+	for _,n := range argsSlice {
+		cutSlice := strings.Split(n, " ")
+		flagsArg = append(flagsArg, cutSlice[0])
+		flagsArg = append(flagsArg, cutSlice[1])
+		counter = counter + 2
+	}
+	return
+}
