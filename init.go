@@ -24,13 +24,8 @@ func init() {
 	//stat config file
 	var _, err = os.Stat(configFile)
 
-	//conditions on config file's existence
-	if err == nil {
-		//read config
-		f, _ := ioutil.ReadFile(configFile)
-		json.Unmarshal(f, &cfg)
-
-	} else if os.IsNotExist(err) {
+	//if config file does not exist
+	if os.IsNotExist(err) {
 		//set config
 		if err = exec.Command("nmcli").Run(); err == nil {
 			cfg.ToolNet = "nmcli"
@@ -55,4 +50,8 @@ func init() {
 		os.MkdirAll(configDir, os.ModePerm)
 		ioutil.WriteFile(configFile, jsoncfg, 0664)
 	}
+
+	//read config
+	f, _ := ioutil.ReadFile(configFile)
+	json.Unmarshal(f, &cfg)
 }
