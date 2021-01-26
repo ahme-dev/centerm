@@ -136,6 +136,18 @@ func amixerSet(n string) (output string, err error) {
 	return
 }
 
+func amixerInc() (output string, err error) {
+	o, e := exec.Command("amixer", "sset", "Master", "5+").CombinedOutput()
+	output, err = string(o), e
+	return
+}
+
+func amixerDec() (output string, err error) {
+	o, e := exec.Command("amixer", "sset", "Master", "5-").CombinedOutput()
+	output, err = string(o), e
+	return
+}
+
 func amixerSetOn() (output string, err error) {
 	o, e := exec.Command("amixer", "sset", "Master", "on").CombinedOutput()
 	output, err = string(o), e
@@ -144,6 +156,12 @@ func amixerSetOn() (output string, err error) {
 
 func amixerSetOff() (output string, err error) {
 	o, e := exec.Command("amixer", "sset", "Master", "off").CombinedOutput()
+	output, err = string(o), e
+	return
+}
+
+func amixerSetOnOff() (output string, err error) {
+	o, e := exec.Command("amixer", "sset", "Master", "toggle").CombinedOutput()
 	output, err = string(o), e
 	return
 }

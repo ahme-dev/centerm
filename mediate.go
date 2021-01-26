@@ -159,24 +159,47 @@ func (c config) soundChange(vol string) {
 	sanePrint(out, err)
 }
 
-func (c config) soundSwitch(sw bool) {
+func (c config) soundStep(pol string) {
 	var out string
 	var err error
 
 	switch c.ToolSound {
 	case "pamixer":
-		if sw == true {
-			out, err = pamixerSetOn()
+		out, err = "this feature isn't supported", nil
+	case "amixer":
+		switch pol {
+		case "pos":
+			out, err = amixerInc()
+		case "neg":
+			out, err = amixerDec()
 		}
-		if sw == false {
+	}
+
+	sanePrint(out, err)
+}
+
+func (c config) soundSwitch(swi string) {
+	var out string
+	var err error
+
+	switch c.ToolSound {
+	case "pamixer":
+		switch swi {
+		case "on":
+			out, err = pamixerSetOn()
+		case "off":
 			out, err = pamixerSetOff()
+		case "toggle":
+			out, err = "this feature isn't supported", nil
 		}
 	case "amixer":
-		if sw == true {
+		switch swi {
+		case "on":
 			out, err = amixerSetOn()
-		}
-		if sw == false {
+		case "off":
 			out, err = amixerSetOff()
+		case "toggle":
+			out, err = amixerSetOnOff()
 		}
 	}
 

@@ -31,11 +31,17 @@ func main() {
 		cfg.netHotspotStop()
 
 	case "sound on", "s on":
-		cfg.soundSwitch(true)
+		cfg.soundSwitch("on")
 	case "sound off", "s off":
-		cfg.soundSwitch(false)
+		cfg.soundSwitch("off")
+	case "sound toggle", "s toggle":
+		cfg.soundSwitch("toggle")
 	case "sound set", "s set":
 		cfg.soundChange(getArg(3))
+	case "sound increase", "s +":
+		cfg.soundStep("pos")
+	case "sound decrease", "s -":
+		cfg.soundStep("neg")
 
 	//overview section
 
@@ -66,7 +72,9 @@ func printDefault() {
 	println("\tcenterm n|net hson|hsoff SSID Password")
 	println("")
 	println("\tcenterm s|sound")
-	println("\tcenterm s|sound on|off")
+	println("\tcenterm s|sound +|increase")
+	println("\tcenterm s|sound -|decrease")
+	println("\tcenterm s|sound on|off|toggle")
 	println("\tcenterm s|sound set 1-100")
 	println("")
 	println("\tcenterm p|power")
