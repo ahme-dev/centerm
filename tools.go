@@ -137,13 +137,13 @@ func amixerSet(n string) (output string, err error) {
 }
 
 func amixerInc() (output string, err error) {
-	o, e := exec.Command("amixer", "sset", "Master", "5+").CombinedOutput()
+	o, e := exec.Command("amixer", "sset", "Master", "5%+").CombinedOutput()
 	output, err = string(o), e
 	return
 }
 
 func amixerDec() (output string, err error) {
-	o, e := exec.Command("amixer", "sset", "Master", "5-").CombinedOutput()
+	o, e := exec.Command("amixer", "sset", "Master", "5%-").CombinedOutput()
 	output, err = string(o), e
 	return
 }

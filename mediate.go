@@ -4,6 +4,8 @@ import (
     "fmt"
 )
 
+const noTool string = "No tool available"
+
 // print func for following methods
 func sanePrint(s string, e error) {
 	if s != "" {
@@ -28,6 +30,8 @@ func (c config) netStatus() {
 		out, err = nmcliGet()
 	case "connmanctl":
 		out, err = connmanctlGet()
+	default:
+		out, err = noTool, nil
 	}
 
 	sanePrint(out, err)
@@ -42,6 +46,8 @@ func (c config) netStatusMore() {
 		out, err = nmcliGetMore()
 	case "connmanctl":
 		out, err = connmanctlGetMore()
+	default:
+		out, err = noTool, nil
 	}
 
 	sanePrint(out, err)
@@ -66,6 +72,8 @@ func (c config) netSwitch(swi bool) {
 		if swi == false {
 			out, err = connmanctlSetOff()
 		}
+	default:
+		out, err = noTool, nil
 	}
 
 
@@ -81,6 +89,8 @@ func (c config) netWifiList() {
 		out, err = nmcliGetWifi()
 	case "connmanctl":
 		out, err = connmanctlGetWifi()
+	default:
+		out, err = noTool, nil
 	}
 
 	sanePrint(out, err)
@@ -95,6 +105,8 @@ func (c config) netWifiConnect(ssid string) {
 		out, err = nmcliSetWifi(ssid)
 	case "connmanctl":
 		out, err = "This tool doesn't support such action yet.", nil
+	default:
+		out, err = noTool, nil
 	}
 
 	sanePrint(out, err)
@@ -109,6 +121,8 @@ func (c config) netHotspotCreate(ssid, password string) {
 		out, err = nmcliMakeHotspot(ssid, password)
 	case "connmanctl":
 		out, err = connmanctlMakeTether(ssid, password)
+	default:
+		out, err = noTool, nil
 	}
 
 	sanePrint(out, err)
@@ -123,6 +137,8 @@ func (c config) netHotspotStop() {
 		out, err = nmcliStopHotspot()
 	case "connmanctl":
 		out, err = connmanctlStopTether()
+	default:
+		out, err = noTool, nil
 	}
 
 	sanePrint(out, err)
@@ -140,6 +156,8 @@ func (c config) soundStatus() {
 		out, err = pamixerGet()
 	case "amixer":
 		out, err = amixerGet()
+	default:
+		out, err = noTool, nil
 	}
 
 	sanePrint(out, err)
@@ -154,6 +172,8 @@ func (c config) soundChange(vol string) {
 		out, err = pamixerSet(vol)
 	case "amixer":
 		out, err = amixerSet(vol)
+	default:
+		out, err = noTool, nil
 	}
 
 	sanePrint(out, err)
@@ -173,6 +193,8 @@ func (c config) soundStep(pol string) {
 		case "neg":
 			out, err = amixerDec()
 		}
+	default:
+		out, err = noTool, nil
 	}
 
 	sanePrint(out, err)
@@ -201,6 +223,8 @@ func (c config) soundSwitch(swi string) {
 		case "toggle":
 			out, err = amixerSetOnOff()
 		}
+	default:
+		out, err = noTool, nil
 	}
 
 	sanePrint(out, err)
@@ -217,6 +241,8 @@ func (c config) powerStatus() {
 		out, err = acpiGet()
 	case "upower":
 		out, err = upowerGet()
+	default:
+		out, err = noTool, nil
 	}
 
 	sanePrint(out, err)
