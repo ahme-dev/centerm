@@ -54,14 +54,14 @@ func printDefault() {
 	//print program
 	println("CENTERM")
 	println("\tVersion: v0.3")
-	println("")
+	println()
 
 	//print config
 	println("CONFIG")
 	println("\tNet tool:", cfg.ToolNet)
 	println("\tSound tool:", cfg.ToolSound)
 	println("\tPower tool:", cfg.ToolPower)
-	println("")
+	println()
 
 	//print help
 	println("USAGE")
@@ -70,13 +70,13 @@ func printDefault() {
 	println("\tcenterm n|net on|off")
 	println("\tcenterm n|net con SSID")
 	println("\tcenterm n|net hson|hsoff SSID Password")
-	println("")
+	println()
 	println("\tcenterm s|sound")
 	println("\tcenterm s|sound +|increase")
 	println("\tcenterm s|sound -|decrease")
 	println("\tcenterm s|sound on|off|toggle")
 	println("\tcenterm s|sound set 1-100")
-	println("")
+	println()
 	println("\tcenterm p|power")
-	println("")
+	println()
 }

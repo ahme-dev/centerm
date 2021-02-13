@@ -4,7 +4,10 @@ import (
     "fmt"
 )
 
-const noTool string = "No tool available"
+const (
+	noTool string = "No tool available..."
+	noSupport string = "Tool doesn't support this action..."
+)
 
 // print func for following methods
 func sanePrint(s string, e error) {
@@ -104,7 +107,7 @@ func (c config) netWifiConnect(ssid string) {
 	case "nmcli":
 		out, err = nmcliSetWifi(ssid)
 	case "connmanctl":
-		out, err = "This tool doesn't support such action yet.", nil
+		out, err = noSupport, nil
 	default:
 		out, err = noTool, nil
 	}
@@ -185,7 +188,7 @@ func (c config) soundStep(pol string) {
 
 	switch c.ToolSound {
 	case "pamixer":
-		out, err = "this feature isn't supported", nil
+		out, err = noSupport, nil
 	case "amixer":
 		switch pol {
 		case "pos":
@@ -212,7 +215,7 @@ func (c config) soundSwitch(swi string) {
 		case "off":
 			out, err = pamixerSetOff()
 		case "toggle":
-			out, err = "this feature isn't supported", nil
+			out, err = noSupport, nil
 		}
 	case "amixer":
 		switch swi {

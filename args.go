@@ -57,8 +57,8 @@ func getArgsOneString(selLen uint8) string {
 
 //returns the given hyphen input as map
 func getArgsHyphen() (flagsArg []string) {
-	var fPattern = regexp.MustCompile(`(-\w{1,}) (\w{1,})`)
-	var argsSlice = fPattern.FindAllString(getArgsOneString(5), 2)
+	var flagPattern = regexp.MustCompile(`(-\w{1,}) (\w{1,})`)
+	var argsSlice = flagPattern.FindAllString(getArgsOneString(5), 2)
 	var counter int
 
 	for _,n := range argsSlice {
