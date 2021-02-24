@@ -41,7 +41,7 @@ func init() {
 
 		if err = exec.Command("acpi").Run(); err == nil {
 			cfg.ToolPower = "acpi"
-		} else if err = exec.Command("upower").Run(); err == nil {
+		} else if err = exec.Command("upower", "-d").Run(); err == nil {
 			cfg.ToolPower = "upower"
 		}
 
