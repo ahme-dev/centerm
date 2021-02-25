@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-//returns one arg, if non-existent return "no argument"
+//returns one arg or nothing if non-existent, rather than error
 func getArg(sel uint8) string {
 	var str string
 	var argsNum = uint8(len(os.Args)) - 1
@@ -14,10 +14,10 @@ func getArg(sel uint8) string {
 	//wrong
 	switch {
 	case sel > argsNum:
-		str = "no argument"
+		str = ""
 		return str
 	case sel == 0:
-		str = "no argument"
+		str = ""
 		return str
 	}
 

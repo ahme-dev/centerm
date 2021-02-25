@@ -36,8 +36,8 @@ func nmcliGetWifi() (output string, err error) {
 	return
 }
 
-func nmcliSetWifi(n string) (output string, err error) {
-	o, e := exec.Command("nmcli", "device", "wifi", "connect", n).CombinedOutput()
+func nmcliSetWifi(ssid, password string) (output string, err error) {
+	o, e := exec.Command("nmcli", "device", "wifi", "connect", ssid, "password", password).CombinedOutput()
 	output, err = string(o), e
 	return
 }

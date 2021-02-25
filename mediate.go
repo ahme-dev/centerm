@@ -99,13 +99,13 @@ func (c config) netWifiList() {
 	sanePrint(out, err)
 }
 
-func (c config) netWifiConnect(ssid string) {
+func (c config) netWifiConnect(ssid, password string) {
 	var out string
 	var err error
 
 	switch c.ToolNet {
 	case "nmcli":
-		out, err = nmcliSetWifi(ssid)
+		out, err = nmcliSetWifi(ssid, password)
 	case "connmanctl":
 		out, err = noSupport, nil
 	default:

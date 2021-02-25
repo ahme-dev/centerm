@@ -23,7 +23,7 @@ func main() {
 	case "net off", "n off":
 		cfg.netSwitch(false)
 	case "net con", "n con":
-		cfg.netWifiConnect(getArg(3))
+		cfg.netWifiConnect(getArg(3), getArg(4))
 
 	case "net hson", "n hson":
 		cfg.netHotspotCreate(getArg(3), getArg(4))
@@ -68,7 +68,7 @@ func printDefault() {
 	println("\tcenterm n|net")
 	println("\tcenterm n|net more")
 	println("\tcenterm n|net on|off")
-	println("\tcenterm n|net con SSID")
+	println("\tcenterm n|net con SSID Password")
 	println("\tcenterm n|net hson|hsoff SSID Password")
 	println()
 	println("\tcenterm s|sound")
