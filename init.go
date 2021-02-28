@@ -8,12 +8,13 @@ import (
 )
 
 type config struct {
-	ToolNet string `json:"Network Tool"`
-	ToolSound string `json:"Sound Tool"`
-	ToolPower string `json:"Power Tool"`
+	ToolNet string `json:"NetworkTool"`
+	ToolSound string `json:"SoundTool"`
+	ToolPower string `json:"PowerTool"`
 }
 
 var cfg = config{}
+
 
 func init() {
 	//make vars

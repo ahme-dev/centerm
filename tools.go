@@ -5,6 +5,7 @@ import (
 )
 
 //networkmanager
+
 func nmcliGet() (output string, err error) {
 	o, e := exec.Command("nmcli", "general", "status").CombinedOutput()
 	output, err = string(o), e
@@ -49,12 +50,13 @@ func nmcliMakeHotspot(ssid, password string) (output string, err error) {
 }
 
 func nmcliStopHotspot() (output string, err error) {
-	o, e := exec.Command("nmcli", "device", "disconnect", "wlan0").CombinedOutput()
+	o, e := exec.Command("nmcli", "device", "disconnect", "wlp2s0").CombinedOutput()
 	output, err = string(o), e
 	return
 }
 
 //connman
+
 func connmanctlGet() (output string, err error) {
 	o, e := exec.Command("connmanctl", "state").CombinedOutput()
 	output, err = string(o), e
@@ -99,6 +101,7 @@ func connmanctlStopTether() (output string, err error) {
 }
 
 //pamixer
+
 func pamixerGet() (output string, err error) {
 	o, e := exec.Command("pamixer", "--get-volume-human").CombinedOutput()
 	output, err = string(o), e
@@ -124,6 +127,7 @@ func pamixerSetOff() (output string, err error) {
 }
 
 //alsa-utils
+
 func amixerGet() (output string, err error) {
 	o, e := exec.Command("amixer", "sget", "Master").CombinedOutput()
 	output, err = string(o), e
@@ -167,6 +171,7 @@ func amixerSetOnOff() (output string, err error) {
 }
 
 //acpi
+
 func acpiGet() (output string, err error) {
 	o, e := exec.Command("acpi").CombinedOutput()
 	output, err = string(o), e
