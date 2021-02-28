@@ -10,7 +10,7 @@ Specific syntax and commands are shown within the program. Functionalities done 
 - Get power info.
 
 # Build
-Having Git and Golang installed, use this one-liner:
+Having Git and Golang installed, you can use this one-liner:
 ```sh
 git clone --depth=1 https://gitlab.com/hvf/centerm.git && cd centerm && go build -o ../centerm-bin && cd .. && rm -rf centerm
 ```
