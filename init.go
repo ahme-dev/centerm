@@ -15,7 +15,7 @@ type config struct {
 
 var cfg = config{}
 
-
+// initialize and set/get configuration
 func init() {
 	//make vars
 	var home, _ = os.UserHomeDir()

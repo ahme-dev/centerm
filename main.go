@@ -37,7 +37,7 @@ func main() {
 			cfg.soundSwitch("on")
 		case "off":
 			cfg.soundSwitch("off")
-		case "toggle":
+		case "toggle", "tog":
 			cfg.soundSwitch("toggle")
 		case "set":
 			cfg.soundChange(args[2])
@@ -68,11 +68,10 @@ func main() {
 		println("\tcenterm s|sound")
 		println("\tcenterm s|sound +|increase")
 		println("\tcenterm s|sound -|decrease")
-		println("\tcenterm s|sound on|off|toggle")
+		println("\tcenterm s|sound on|off|toggle|tog")
 		println("\tcenterm s|sound set 1-100")
 		println()
 		println("\tcenterm p|power")
-		println()
 	}
 }
 
