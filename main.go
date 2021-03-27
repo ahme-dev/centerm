@@ -29,6 +29,7 @@ func main() {
 		case "hsoff" :
 			cfg.netHotspotStop()
 		}
+
 	case "sound", "s":
 		switch (args[1]) {
 		case " ":
@@ -46,8 +47,14 @@ func main() {
 		case "dec", "-":
 			cfg.soundStep("neg")
 		}
+
 	case "power", "p":
-		cfg.powerStatus()
+		switch(args[1]) {
+		case " ":
+			cfg.powerStatus()
+		case "more":
+			cfg.powerStatusMore()
+		}
 
 	default:
 		//print config
@@ -72,6 +79,7 @@ func main() {
 		println("\tcenterm s|sound set 1-100")
 		println()
 		println("\tcenterm p|power")
+		println("\tcenterm p|power more")
 	}
 }
 

@@ -178,6 +178,14 @@ func acpiGet() (output string, err error) {
 	return
 }
 
+func acpiGetMore() (output string, err error) {
+	o, e := exec.Command("acpi", "--everything").CombinedOutput()
+	output, err = string(o), e
+	return
+}
+
+//upower
+
 func upowerGet() (output string, err error) {
 	o, e := exec.Command("upower", "-d").CombinedOutput()
 	output, err = string(o), e

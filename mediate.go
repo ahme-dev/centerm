@@ -250,3 +250,19 @@ func (c config) powerStatus() {
 
 	sanePrint(out, err)
 }
+
+func (c config) powerStatusMore() {
+	var out string
+	var err error
+
+	switch c.ToolPower {
+	case "acpi":
+		out, err = acpiGetMore()
+	case "upower":
+		out, err = noSupport, nil
+	default:
+		out, err = noTool, nil
+	}
+
+	sanePrint(out, err)
+}
