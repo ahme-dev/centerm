@@ -2,20 +2,31 @@ package main
 
 import (
     "fmt"
+	"os"
 )
 
 const (
-	noTool string = "No tool available..."
-	noSupport string = "Tool doesn't support this action..."
+	noTool string = "no tool available..."
+	noSupport string = "tool doesn't support this action..."
 )
+
+var (
+	out string
+	err error
+)
+
 
 // print func for following methods
 func sanePrint(s string, e error) {
-	if s != "" {
-		fmt.Println(s)
-	}
 	if e != nil {
-		fmt.Println(e)
+		fmt.Println("[ERR]", e)
+		os.Exit(2)
+	} else if s == "" {
+		fmt.Println("[ERR] no output...")
+		os.Exit(1)
+	} else {
+		fmt.Println(s)
+		os.Exit(0)
 	}
 }
 
@@ -25,41 +36,32 @@ func sanePrint(s string, e error) {
 //net
 
 func (c config) netStatus() {
-	var out string
-	var err error
-
 	switch c.ToolNet {
 	case "nmcli":
 		out, err = nmcliGet()
 	case "connmanctl":
 		out, err = connmanctlGet()
 	default:
-		out, err = noTool, nil
+		out, err = "", fmt.Errorf(noTool)
 	}
 
 	sanePrint(out, err)
 }
 
 func (c config) netStatusMore() {
-	var out string
-	var err error
-
 	switch c.ToolNet {
 	case "nmcli":
 		out, err = nmcliGetMore()
 	case "connmanctl":
 		out, err = connmanctlGetMore()
 	default:
-		out, err = noTool, nil
+		out, err = "", fmt.Errorf(noTool)
 	}
 
 	sanePrint(out, err)
 }
 
 func (c config) netSwitch(swi bool) {
-	var out string
-	var err error
-
 	switch c.ToolNet {
 	case "nmcli":
 		if swi == true {
@@ -76,7 +78,7 @@ func (c config) netSwitch(swi bool) {
 			out, err = connmanctlSetOff()
 		}
 	default:
-		out, err = noTool, nil
+		out, err = "", fmt.Errorf(noTool)
 	}
 
 
@@ -84,64 +86,52 @@ func (c config) netSwitch(swi bool) {
 }
 
 func (c config) netWifiList() {
-	var out string
-	var err error
-
 	switch c.ToolNet {
 	case "nmcli":
 		out, err = nmcliGetWifi()
 	case "connmanctl":
 		out, err = connmanctlGetWifi()
 	default:
-		out, err = noTool, nil
+		out, err = "", fmt.Errorf(noTool)
 	}
 
 	sanePrint(out, err)
 }
 
 func (c config) netWifiConnect(ssid, password string) {
-	var out string
-	var err error
-
 	switch c.ToolNet {
 	case "nmcli":
 		out, err = nmcliSetWifi(ssid, password)
 	case "connmanctl":
-		out, err = noSupport, nil
+		out, err = "", fmt.Errorf(noSupport)
 	default:
-		out, err = noTool, nil
+		out, err = "", fmt.Errorf(noTool)
 	}
 
 	sanePrint(out, err)
 }
 
 func (c config) netHotspotCreate(ssid, password string) {
-	var out string
-	var err error
-
 	switch c.ToolNet {
 	case "nmcli":
 		out, err = nmcliMakeHotspot(ssid, password)
 	case "connmanctl":
 		out, err = connmanctlMakeTether(ssid, password)
 	default:
-		out, err = noTool, nil
+		out, err = "", fmt.Errorf(noTool)
 	}
 
 	sanePrint(out, err)
 }
 
 func (c config) netHotspotStop() {
-	var out string
-	var err error
-
 	switch c.ToolNet {
 	case "nmcli":
 		out, err = nmcliStopHotspot()
 	case "connmanctl":
 		out, err = connmanctlStopTether()
 	default:
-		out, err = noTool, nil
+		out, err = "", fmt.Errorf(noTool)
 	}
 
 	sanePrint(out, err)
@@ -151,44 +141,35 @@ func (c config) netHotspotStop() {
 //sound
 
 func (c config) soundStatus() {
-	var out string
-	var err error
-
 	switch c.ToolSound {
 	case "pamixer":
 		out, err = pamixerGet()
 	case "amixer":
 		out, err = amixerGet()
 	default:
-		out, err = noTool, nil
+		out, err = "", fmt.Errorf(noTool)
 	}
 
 	sanePrint(out, err)
 }
 
 func (c config) soundChange(vol string) {
-	var out string
-	var err error
-
 	switch c.ToolSound {
 	case "pamixer":
 		out, err = pamixerSet(vol)
 	case "amixer":
 		out, err = amixerSet(vol)
 	default:
-		out, err = noTool, nil
+		out, err = "", fmt.Errorf(noTool)
 	}
 
 	sanePrint(out, err)
 }
 
 func (c config) soundStep(pol string) {
-	var out string
-	var err error
-
 	switch c.ToolSound {
 	case "pamixer":
-		out, err = noSupport, nil
+		out, err = "", fmt.Errorf(noSupport)
 	case "amixer":
 		switch pol {
 		case "pos":
@@ -197,16 +178,13 @@ func (c config) soundStep(pol string) {
 			out, err = amixerDec()
 		}
 	default:
-		out, err = noTool, nil
+		out, err = "", fmt.Errorf(noTool)
 	}
 
 	sanePrint(out, err)
 }
 
 func (c config) soundSwitch(swi string) {
-	var out string
-	var err error
-
 	switch c.ToolSound {
 	case "pamixer":
 		switch swi {
@@ -215,7 +193,7 @@ func (c config) soundSwitch(swi string) {
 		case "off":
 			out, err = pamixerSetOff()
 		case "toggle":
-			out, err = noSupport, nil
+			out, err = "", fmt.Errorf(noSupport)
 		}
 	case "amixer":
 		switch swi {
@@ -227,7 +205,7 @@ func (c config) soundSwitch(swi string) {
 			out, err = amixerSetOnOff()
 		}
 	default:
-		out, err = noTool, nil
+		out, err = "", fmt.Errorf(noTool)
 	}
 
 	sanePrint(out, err)
@@ -236,32 +214,26 @@ func (c config) soundSwitch(swi string) {
 //power
 
 func (c config) powerStatus() {
-	var out string
-	var err error
-
 	switch c.ToolPower {
 	case "acpi":
 		out, err = acpiGet()
 	case "upower":
 		out, err = upowerGet()
 	default:
-		out, err = noTool, nil
+		out, err = "", fmt.Errorf(noTool)
 	}
 
 	sanePrint(out, err)
 }
 
 func (c config) powerStatusMore() {
-	var out string
-	var err error
-
 	switch c.ToolPower {
 	case "acpi":
 		out, err = acpiGetMore()
 	case "upower":
-		out, err = noSupport, nil
+		out, err = "", fmt.Errorf(noSupport)
 	default:
-		out, err = noTool, nil
+		out, err = "", fmt.Errorf(noTool)
 	}
 
 	sanePrint(out, err)
