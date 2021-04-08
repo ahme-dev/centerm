@@ -1,0 +1,43 @@
+# centerm(1) completion                                   -*- shell-script -*- 
+# 
+# Derived from hostnamectl's completion script.
+
+__contains_word () {
+    local w word=$1; shift
+    for w in "$@"; do
+        [[ $w = "$word" ]] && return
+    done
+}
+
+_centerm() {
+    local i verb comps
+    local cur=${COMP_WORDS[COMP_CWORD]} prev=${COMP_WORDS[COMP_CWORD-1]}
+
+    local -A VERBS=(
+        [P]='power'
+        [N]='net'
+        [S]='sound'
+    )
+
+    for ((i=0; i < COMP_CWORD; i++)); do
+        if __contains_word "${COMP_WORDS[i]}" ${VERBS[*]}; then
+            verb=${COMP_WORDS[i]}
+            break
+        fi
+    done
+
+    if [[ -z $verb ]]; then
+        comps=${VERBS[*]}
+    elif __contains_word "$verb" ${VERBS[N]}; then
+        comps='more on off con hson hsoff'
+    elif __contains_word "$verb" ${VERBS[S]}; then
+        comps='inc dec on off toggle set'
+    elif __contains_word "$verb" ${VERBS[P]}; then
+        comps='more'
+    fi
+
+    COMPREPLY=( $(compgen -W '$comps' -- "$cur") )
+    return 0
+}
+
+complete -F _centerm centerm
