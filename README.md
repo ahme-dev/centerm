@@ -12,7 +12,7 @@ Specific syntax and commands are shown within the program. Functionalities done 
 # Build
 Having Git and Golang installed, you can use this one-liner:
 ```sh
-git clone --depth=1 https://gitlab.com/hvf/centerm.git && cd ./centerm && go build . -o centerm-bin
+git clone --depth=1 https://gitlab.com/hvf/centerm.git && cd ./centerm && go build -o centerm-bin
 ```
 
 # Install
