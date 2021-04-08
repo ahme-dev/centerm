@@ -12,12 +12,12 @@ Specific syntax and commands are shown within the program. Functionalities done 
 # Build
 Having Git and Golang installed, you can use this one-liner:
 ```sh
-git clone --depth=1 https://gitlab.com/hvf/centerm.git && cd ./centerm && go build -o centerm-bin
+git clone --depth=1 https://gitlab.com/hvf/centerm.git && cd ./centerm-source && go build
 ```
 
 # Install
 After the build step, copy the binary and completion to their respective places on your system.
 You can also use this presumptious one-liner (requires root):
 ```sh
-cp ./centerm-bin /usr/local/bin/; cp ./completion/centerm /usr/share/bash-completion/completions/
+cp ./completion/centerm /usr/share/bash-completion/completions/ && cp ./centerm /usr/local/bin/
 ```
