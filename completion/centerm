@@ -18,6 +18,8 @@ _centerm() {
         [N]='net'
         [L]='light'
         [S]='sound'
+        [T]='tools'
+        [H]='help'
     )
 
     for ((i=0; i < COMP_CWORD; i++)); do
@@ -37,6 +39,8 @@ _centerm() {
         comps='inc dec set'
     elif __contains_word "$verb" ${VERBS[P]}; then
         comps='more'
+    elif __contains_word "$verb" ${VERBS[T]}; then
+        comps='recheck'
     fi
 
     COMPREPLY=( $(compgen -W '$comps' -- "$cur") )
