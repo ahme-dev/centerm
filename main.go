@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 	"strings"
 )
@@ -28,6 +29,8 @@ func main() {
 			cfg.netHotspotCreate(args[2], args[3])
 		case "hsoff":
 			cfg.netHotspotStop()
+		default:
+			sanePrint("", fmt.Errorf(wrongInput))
 		}
 
 	case "sound", "s":
@@ -46,6 +49,8 @@ func main() {
 			cfg.soundStep("pos")
 		case "dec", "-":
 			cfg.soundStep("neg")
+		default:
+			sanePrint("", fmt.Errorf(wrongInput))
 		}
 
 	case "light", "l":
@@ -58,6 +63,8 @@ func main() {
 			cfg.lightStep("pos")
 		case "dec", "-":
 			cfg.lightStep("neg")
+		default:
+			sanePrint("", fmt.Errorf(wrongInput))
 		}
 
 	case "power", "p":
@@ -66,6 +73,8 @@ func main() {
 			cfg.powerStatus()
 		case "more":
 			cfg.powerStatusMore()
+		default:
+			sanePrint("", fmt.Errorf(wrongInput))
 		}
 
 	default:
