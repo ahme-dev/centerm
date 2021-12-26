@@ -77,37 +77,38 @@ func main() {
 			sanePrint("", fmt.Errorf(wrongInput))
 		}
 
-	default:
-		//print config
-		println("CONFIG")
-		println("\tNet tool:", cfg.SelectedNetTool)
-		println("\tSound tool:", cfg.SelectedSoundTool)
-		println("\tLight tool:", cfg.SelectedLightTool)
-		println("\tPower tool:", cfg.SelectedPowerTool)
-		println()
+	case "tools":
+		printTools()
 
-		//print help
-		println("USAGE")
-		println("\tcenterm n|net")
-		println("\tcenterm n|net more")
-		println("\tcenterm n|net on|off")
-		println("\tcenterm n|net con SSID Password")
-		println("\tcenterm n|net hson|hsoff SSID Password")
-		println()
-		println("\tcenterm s|sound")
-		println("\tcenterm s|sound +|inc")
-		println("\tcenterm s|sound -|dec")
-		println("\tcenterm s|sound on|off|toggle|tog")
-		println("\tcenterm s|sound set 1-100")
-		println()
-		println("\tcenterm l|light")
-		println("\tcenterm l|light +|inc")
-		println("\tcenterm l|light -|dec")
-		println("\tcenterm l|light set 1-100")
-		println()
-		println("\tcenterm p|power")
-		println("\tcenterm p|power more")
+	case "help":
+		fallthrough
+
+	default:
+		printUsage()
 	}
+}
+
+func printUsage() {
+	println("USAGE")
+	println("\tcenterm n|net")
+	println("\tcenterm n|net more|on|off")
+	println("\tcenterm n|net con SSID Password")
+	println("\tcenterm n|net hson|hsoff SSID Password")
+	println()
+	println("\tcenterm s|sound")
+	println("\tcenterm s|sound +|inc|-|dec")
+	println("\tcenterm s|sound on|off|toggle|tog")
+	println("\tcenterm s|sound set 1-100")
+	println()
+	println("\tcenterm l|light")
+	println("\tcenterm l|light +|inc|-|dec")
+	println("\tcenterm l|light set 1-100")
+	println()
+	println("\tcenterm p|power")
+	println("\tcenterm p|power more")
+	println()
+	println("\tcenterm tools")
+	println("\tcenterm help")
 }
 
 //returns the given input as a slice with specified length
