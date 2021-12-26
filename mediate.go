@@ -35,7 +35,7 @@ func sanePrint(s string, e error) {
 //net
 
 func (c config) netStatus() {
-	switch c.ToolNet {
+	switch c.SelectedNetTool {
 	case "nmcli":
 		out, err = nmcliGet()
 	case "connmanctl":
@@ -48,7 +48,7 @@ func (c config) netStatus() {
 }
 
 func (c config) netStatusMore() {
-	switch c.ToolNet {
+	switch c.SelectedNetTool {
 	case "nmcli":
 		out, err = nmcliGetMore()
 	case "connmanctl":
@@ -61,7 +61,7 @@ func (c config) netStatusMore() {
 }
 
 func (c config) netSwitch(switchOn bool) {
-	switch c.ToolNet {
+	switch c.SelectedNetTool {
 	case "nmcli":
 		if switchOn {
 			out, err = nmcliSetOn()
@@ -82,7 +82,7 @@ func (c config) netSwitch(switchOn bool) {
 }
 
 func (c config) netWifiList() {
-	switch c.ToolNet {
+	switch c.SelectedNetTool {
 	case "nmcli":
 		out, err = nmcliGetWifi()
 	case "connmanctl":
@@ -95,7 +95,7 @@ func (c config) netWifiList() {
 }
 
 func (c config) netWifiConnect(ssid, password string) {
-	switch c.ToolNet {
+	switch c.SelectedNetTool {
 	case "nmcli":
 		out, err = nmcliSetWifi(ssid, password)
 	case "connmanctl":
@@ -108,7 +108,7 @@ func (c config) netWifiConnect(ssid, password string) {
 }
 
 func (c config) netHotspotCreate(ssid, password string) {
-	switch c.ToolNet {
+	switch c.SelectedNetTool {
 	case "nmcli":
 		out, err = nmcliMakeHotspot(ssid, password)
 	case "connmanctl":
@@ -121,7 +121,7 @@ func (c config) netHotspotCreate(ssid, password string) {
 }
 
 func (c config) netHotspotStop() {
-	switch c.ToolNet {
+	switch c.SelectedNetTool {
 	case "nmcli":
 		out, err = nmcliStopHotspot()
 	case "connmanctl":
@@ -136,7 +136,7 @@ func (c config) netHotspotStop() {
 //sound
 
 func (c config) soundStatus() {
-	switch c.ToolSound {
+	switch c.SelectedSoundTool {
 	case "pamixer":
 		out, err = pamixerGet()
 	case "amixer":
@@ -149,7 +149,7 @@ func (c config) soundStatus() {
 }
 
 func (c config) soundChange(vol string) {
-	switch c.ToolSound {
+	switch c.SelectedSoundTool {
 	case "pamixer":
 		out, err = pamixerSet(vol)
 	case "amixer":
@@ -162,7 +162,7 @@ func (c config) soundChange(vol string) {
 }
 
 func (c config) soundStep(pol string) {
-	switch c.ToolSound {
+	switch c.SelectedSoundTool {
 	case "pamixer":
 		out, err = "", fmt.Errorf(noSupport)
 	case "amixer":
@@ -180,7 +180,7 @@ func (c config) soundStep(pol string) {
 }
 
 func (c config) soundSwitch(swi string) {
-	switch c.ToolSound {
+	switch c.SelectedSoundTool {
 	case "pamixer":
 		switch swi {
 		case "on":
@@ -209,7 +209,7 @@ func (c config) soundSwitch(swi string) {
 //light (brightness)
 
 func (c config) lightStatus() {
-	switch c.ToolLight {
+	switch c.SelectedLightTool {
 	case "xbacklight":
 		out, err = xbacklightGet()
 	default:
@@ -220,7 +220,7 @@ func (c config) lightStatus() {
 }
 
 func (c config) lightChange(level string) {
-	switch c.ToolLight {
+	switch c.SelectedLightTool {
 	case "xbacklight":
 		out, err = xbacklightSet(level)
 	default:
@@ -231,7 +231,7 @@ func (c config) lightChange(level string) {
 }
 
 func (c config) lightStep(pol string) {
-	switch c.ToolLight {
+	switch c.SelectedLightTool {
 	case "xbacklight":
 		switch pol {
 		case "pos":
@@ -249,7 +249,7 @@ func (c config) lightStep(pol string) {
 //power
 
 func (c config) powerStatus() {
-	switch c.ToolPower {
+	switch c.SelectedPowerTool {
 	case "acpi":
 		out, err = acpiGet()
 	case "upower":
@@ -262,7 +262,7 @@ func (c config) powerStatus() {
 }
 
 func (c config) powerStatusMore() {
-	switch c.ToolPower {
+	switch c.SelectedPowerTool {
 	case "acpi":
 		out, err = acpiGetMore()
 	case "upower":

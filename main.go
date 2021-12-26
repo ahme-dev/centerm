@@ -71,10 +71,10 @@ func main() {
 	default:
 		//print config
 		println("CONFIG")
-		println("\tNet tool:", cfg.ToolNet)
-		println("\tSound tool:", cfg.ToolSound)
-		println("\tLight tool:", cfg.ToolLight)
-		println("\tPower tool:", cfg.ToolPower)
+		println("\tNet tool:", cfg.SelectedNetTool)
+		println("\tSound tool:", cfg.SelectedSoundTool)
+		println("\tLight tool:", cfg.SelectedLightTool)
+		println("\tPower tool:", cfg.SelectedPowerTool)
 		println()
 
 		//print help
