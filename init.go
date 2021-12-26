@@ -9,16 +9,21 @@ import (
 
 // initialize and set/get configuration
 func init() {
-	//make vars
+	modifyConfig(false)
+}
+
+func modifyConfig(forceCheck bool) {
 	var home, _ = os.UserHomeDir()
 	var configDir = home + "/.config/centerm"
 	var configFile = configDir + "/toolscfg.json"
 
-	//stat config file
+	// stat config file
 	var _, err = os.Stat(configFile)
 
-	//if config file does not exist
-	if os.IsNotExist(err) {
+	// if config file does not exist
+	// or if the check is forced
+	// check and write the config
+	if os.IsNotExist(err) || forceCheck {
 		// check for the available network tools
 		for _, toolName := range netTools {
 			if err = exec.Command(toolName).Run(); err == nil {

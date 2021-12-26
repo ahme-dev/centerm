@@ -78,7 +78,14 @@ func main() {
 		}
 
 	case "tools":
-		printTools()
+		switch args[1] {
+		case " ":
+			printTools()
+		case "recheck":
+			modifyConfig(true)
+		default:
+			sanePrint("", fmt.Errorf(wrongInput))
+		}
 
 	case "help":
 		fallthrough
@@ -108,6 +115,7 @@ func printUsage() {
 	println("\tcenterm p|power more")
 	println()
 	println("\tcenterm tools")
+	println("\tcenterm tools recheck")
 	println("\tcenterm help")
 }
 
