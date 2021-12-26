@@ -42,7 +42,7 @@ func init() {
 		}
 
 		if err = exec.Command("xbacklight").Run(); err == nil {
-			cfg.ToolPower = "xbacklight"
+			cfg.ToolLight = "xbacklight"
 		}
 
 		if err = exec.Command("acpi").Run(); err == nil {
