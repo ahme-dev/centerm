@@ -32,15 +32,15 @@ var powerTools = []string{
 }
 
 func printTools() {
-	fmt.Println("SELECTED")
-	fmt.Printf("\t  Net tool: (%v)\n", cfg.SelectedNetTool)
-	fmt.Printf("\tSound tool: (%v)\n", cfg.SelectedSoundTool)
-	fmt.Printf("\tLight tool: (%v)\n", cfg.SelectedLightTool)
-	fmt.Printf("\tPower tool: (%v)\n", cfg.SelectedPowerTool)
+	fmt.Println("SELECTED TOOLS")
+	fmt.Printf("\t  Net: %v\n", cfg.SelectedNetTool)
+	fmt.Printf("\tSound: %v\n", cfg.SelectedSoundTool)
+	fmt.Printf("\tLight: %v\n", cfg.SelectedLightTool)
+	fmt.Printf("\tPower: %v\n", cfg.SelectedPowerTool)
 	fmt.Println()
-	fmt.Println("SUPPORTED")
-	fmt.Printf("\t  Net tools: %v\n", netTools)
-	fmt.Printf("\tSound tools: %v\n", soundTools)
-	fmt.Printf("\tLight tools: %v\n", lightTools)
-	fmt.Printf("\tPower tools: %v\n", powerTools)
+	fmt.Println("SUPPORTED TOOLS")
+	fmt.Printf("\t  Net: %v\n", netTools)
+	fmt.Printf("\tSound: %v\n", soundTools)
+	fmt.Printf("\tLight: %v\n", lightTools)
+	fmt.Printf("\tPower: %v\n", powerTools)
 }
