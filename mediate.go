@@ -6,8 +6,8 @@ import (
 )
 
 const (
-	noTool    string = "no tool available..."
-	noSupport string = "tool doesn't support this action..."
+	noTool    string = "[INF] no tool available"
+	noSupport string = "[INF] tool doesn't support this action"
 )
 
 var (
@@ -21,7 +21,7 @@ func sanePrint(s string, e error) {
 		fmt.Println("[ERR]", e)
 		os.Exit(2)
 	} else if s == "" {
-		fmt.Println("[ERR] no output...")
+		fmt.Println("[INF] no output")
 		os.Exit(1)
 	} else {
 		fmt.Println(s)
