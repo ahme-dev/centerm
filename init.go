@@ -7,18 +7,6 @@ import (
 	"os/exec"
 )
 
-// global configuration type
-type config struct {
-	SelectedNetTool   string `json:"NetworkTool"`
-	SelectedSoundTool string `json:"SoundTool"`
-	SelectedLightTool string `json:"LightTool"`
-	SelectedPowerTool string `json:"PowerTool"`
-}
-
-// global configuration struct
-// sets which tools to use
-var cfg = config{}
-
 // initialize and set/get configuration
 func init() {
 	//make vars
@@ -31,12 +19,6 @@ func init() {
 
 	//if config file does not exist
 	if os.IsNotExist(err) {
-		// define tools to use
-		var netTools = []string{"nmcli", "connmanctl"}
-		var soundTools = []string{"pamixer", "amixer"}
-		var lightTools = []string{"xbacklight"}
-		var powerTools = []string{"acpi", "upower"}
-
 		// check for the available network tools
 		for _, toolName := range netTools {
 			if err = exec.Command(toolName).Run(); err == nil {
