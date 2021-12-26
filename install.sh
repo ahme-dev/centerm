@@ -1,11 +1,18 @@
 #!/bin/sh
 
-if [ "$EUID" -ne 0 ]
+# used values
+binName=centerm
+binPath=/usr/local/bin
+completionPath=/usr/share/bash-completion/completions
+
+# if not root exit
+if [ "$USER" != "root" ]
 then
 	echo "Script requires root permissions."
 	exit
 fi
 
-go build -o centerm .
-mv centerm /usr/local/bin/
-cp ./completion/centerm /usr/share/bash-completion/completions/
+# actions
+go build -o "$binName" .
+mv centerm "$binPath"
+cp ./completion/centerm "$completionPath"
