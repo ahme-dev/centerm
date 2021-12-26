@@ -60,20 +60,18 @@ func (c config) netStatusMore() {
 	sanePrint(out, err)
 }
 
-func (c config) netSwitch(swi bool) {
+func (c config) netSwitch(switchOn bool) {
 	switch c.ToolNet {
 	case "nmcli":
-		if swi == true {
+		if switchOn {
 			out, err = nmcliSetOn()
-		}
-		if swi == false {
+		} else {
 			out, err = nmcliSetOff()
 		}
 	case "connmanctl":
-		if swi == true {
+		if switchOn {
 			out, err = connmanctlSetOn()
-		}
-		if swi == false {
+		} else {
 			out, err = connmanctlSetOff()
 		}
 	default:
