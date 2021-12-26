@@ -1,12 +1,12 @@
 package main
 
 import (
-    "fmt"
+	"fmt"
 	"os"
 )
 
 const (
-	noTool string = "no tool available..."
+	noTool    string = "no tool available..."
 	noSupport string = "tool doesn't support this action..."
 )
 
@@ -14,7 +14,6 @@ var (
 	out string
 	err error
 )
-
 
 // print func for following methods
 func sanePrint(s string, e error) {
@@ -81,7 +80,6 @@ func (c config) netSwitch(swi bool) {
 		out, err = "", fmt.Errorf(noTool)
 	}
 
-
 	sanePrint(out, err)
 }
 
@@ -136,7 +134,6 @@ func (c config) netHotspotStop() {
 
 	sanePrint(out, err)
 }
-
 
 //sound
 
@@ -203,6 +200,46 @@ func (c config) soundSwitch(swi string) {
 			out, err = amixerSetOff()
 		case "toggle":
 			out, err = amixerSetOnOff()
+		}
+	default:
+		out, err = "", fmt.Errorf(noTool)
+	}
+
+	sanePrint(out, err)
+}
+
+//light (brightness)
+
+func (c config) lightStatus() {
+	switch c.ToolLight {
+	case "xbacklight":
+		out, err = xbacklightGet()
+	default:
+		out, err = "", fmt.Errorf(noTool)
+	}
+
+	sanePrint(out, err)
+}
+
+func (c config) lightChange(level string) {
+	switch c.ToolLight {
+	case "xbacklight":
+		out, err = xbacklightSet(level)
+	default:
+		out, err = "", fmt.Errorf(noTool)
+	}
+
+	sanePrint(out, err)
+}
+
+func (c config) lightStep(pol string) {
+	switch c.ToolLight {
+	case "xbacklight":
+		switch pol {
+		case "pos":
+			out, err = xbacklightInc()
+		case "neg":
+			out, err = xbacklightDec()
 		}
 	default:
 		out, err = "", fmt.Errorf(noTool)

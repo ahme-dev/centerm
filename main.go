@@ -10,9 +10,9 @@ func main() {
 	args := getArgs(5)
 
 	//status section
-	switch (args[0]) {
+	switch args[0] {
 	case "net", "n":
-		switch (args[1]) {
+		switch args[1] {
 		case " ":
 			cfg.netStatus()
 			cfg.netWifiList()
@@ -24,14 +24,14 @@ func main() {
 			cfg.netSwitch(false)
 		case "con":
 			cfg.netWifiConnect(args[2], args[3])
-		case "hson" :
+		case "hson":
 			cfg.netHotspotCreate(args[2], args[3])
-		case "hsoff" :
+		case "hsoff":
 			cfg.netHotspotStop()
 		}
 
 	case "sound", "s":
-		switch (args[1]) {
+		switch args[1] {
 		case " ":
 			cfg.soundStatus()
 		case "on":
@@ -48,8 +48,20 @@ func main() {
 			cfg.soundStep("neg")
 		}
 
+	case "light", "l":
+		switch args[1] {
+		case " ":
+			cfg.lightStatus()
+		case "set":
+			cfg.lightChange(args[2])
+		case "inc", "+":
+			cfg.lightStep("pos")
+		case "dec", "-":
+			cfg.lightStep("neg")
+		}
+
 	case "power", "p":
-		switch(args[1]) {
+		switch args[1] {
 		case " ":
 			cfg.powerStatus()
 		case "more":
@@ -61,6 +73,7 @@ func main() {
 		println("CONFIG")
 		println("\tNet tool:", cfg.ToolNet)
 		println("\tSound tool:", cfg.ToolSound)
+		println("\tLight tool:", cfg.ToolLight)
 		println("\tPower tool:", cfg.ToolPower)
 		println()
 
@@ -77,6 +90,11 @@ func main() {
 		println("\tcenterm s|sound -|dec")
 		println("\tcenterm s|sound on|off|toggle|tog")
 		println("\tcenterm s|sound set 1-100")
+		println()
+		println("\tcenterm l|light")
+		println("\tcenterm l|light +|inc")
+		println("\tcenterm l|light -|dec")
+		println("\tcenterm l|light set 1-100")
 		println()
 		println("\tcenterm p|power")
 		println("\tcenterm p|power more")

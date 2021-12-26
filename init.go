@@ -8,8 +8,9 @@ import (
 )
 
 type config struct {
-	ToolNet string `json:"NetworkTool"`
+	ToolNet   string `json:"NetworkTool"`
 	ToolSound string `json:"SoundTool"`
+	ToolLight string `json:"LightTool"`
 	ToolPower string `json:"PowerTool"`
 }
 
@@ -38,6 +39,10 @@ func init() {
 			cfg.ToolSound = "pamixer"
 		} else if err = exec.Command("amixer").Run(); err == nil {
 			cfg.ToolSound = "amixer"
+		}
+
+		if err = exec.Command("xbacklight").Run(); err == nil {
+			cfg.ToolPower = "xbacklight"
 		}
 
 		if err = exec.Command("acpi").Run(); err == nil {

@@ -170,6 +170,32 @@ func amixerSetOnOff() (output string, err error) {
 	return
 }
 
+//xbacklight
+
+func xbacklightGet() (output string, err error) {
+	o, e := exec.Command("xbacklight", "-get").CombinedOutput()
+	output, err = string(o), e
+	return
+}
+
+func xbacklightSet(n string) (output string, err error) {
+	o, e := exec.Command("xbacklight", "-set", n).CombinedOutput()
+	output, err = string(o), e
+	return
+}
+
+func xbacklightInc() (output string, err error) {
+	o, e := exec.Command("xbacklight", "-inc", "5").CombinedOutput()
+	output, err = string(o), e
+	return
+}
+
+func xbacklightDec() (output string, err error) {
+	o, e := exec.Command("xbacklight", "-dec", "5").CombinedOutput()
+	output, err = string(o), e
+	return
+}
+
 //acpi
 
 func acpiGet() (output string, err error) {
