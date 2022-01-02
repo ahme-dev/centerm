@@ -16,6 +16,7 @@ func main() {
 		switch args[1] {
 		case " ":
 			cfg.netStatus()
+		case "list":
 			cfg.netWifiList()
 		case "more":
 			cfg.netStatusMore()
@@ -98,7 +99,9 @@ func main() {
 func printUsage() {
 	println("USAGE")
 	println("\tcenterm n|net")
-	println("\tcenterm n|net more|on|off")
+	println("\tcenterm n|net list")
+	println("\tcenterm n|net more")
+	println("\tcenterm n|net on|off")
 	println("\tcenterm n|net con SSID Password")
 	println("\tcenterm n|net hson|hsoff SSID Password")
 	println()
