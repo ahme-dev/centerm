@@ -32,7 +32,7 @@ _centerm() {
     if [[ -z $verb ]]; then
         comps=${VERBS[*]}
     elif __contains_word "$verb" ${VERBS[N]}; then
-        comps='more on off con hson hsoff'
+        comps='more list on off con hson hsoff'
     elif __contains_word "$verb" ${VERBS[S]}; then
         comps='inc dec on off toggle set'
     elif __contains_word "$verb" ${VERBS[L]}; then
