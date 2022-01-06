@@ -25,7 +25,7 @@ func modifyConfig(forceCheck bool) {
 	// check and write the config
 	if os.IsNotExist(err) || forceCheck {
 		// check for the available network tools
-		for _, toolName := range netTools {
+		for _, toolName := range tools.net {
 			if err = exec.Command(toolName).Run(); err == nil {
 				cfg.SelectedNetTool = toolName
 				break
@@ -33,7 +33,7 @@ func modifyConfig(forceCheck bool) {
 		}
 
 		// check for the available sound tools
-		for _, toolName := range soundTools {
+		for _, toolName := range tools.sound {
 			if err = exec.Command(toolName).Run(); err == nil {
 				cfg.SelectedSoundTool = toolName
 				break
@@ -41,7 +41,7 @@ func modifyConfig(forceCheck bool) {
 		}
 
 		// check for the available brightness tools
-		for _, toolName := range lightTools {
+		for _, toolName := range tools.light {
 			if err = exec.Command(toolName).Run(); err == nil {
 				cfg.SelectedLightTool = toolName
 				break
@@ -49,7 +49,7 @@ func modifyConfig(forceCheck bool) {
 		}
 
 		// check for the available power tools
-		for _, toolName := range powerTools {
+		for _, toolName := range tools.power {
 			// exception for upower which has no output without -d option
 			if toolName == "upower" {
 				if err = exec.Command(toolName, "-d").Run(); err == nil {

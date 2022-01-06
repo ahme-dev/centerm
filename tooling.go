@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 // global configuration type
-type config struct {
+type Config struct {
 	SelectedNetTool   string `json:"NetworkTool"`
 	SelectedSoundTool string `json:"SoundTool"`
 	SelectedLightTool string `json:"LightTool"`
@@ -12,35 +12,64 @@ type config struct {
 
 // global configuration struct
 // sets which tools to use
-var cfg = config{}
+var cfg = Config{}
 
-// define tools to use
-var netTools = []string{
-	"nmcli",
-	"connmanctl",
+// define Tools to use
+type Tools struct {
+	net   []string
+	sound []string
+	light []string
+	power []string
 }
-var soundTools = []string{
-	"pamixer",
-	"amixer",
-}
-var lightTools = []string{
-	"xbacklight",
-}
-var powerTools = []string{
-	"acpi",
-	"upower",
+
+var tools = Tools{
+	net:   []string{"nmcli", "connmanctl"},
+	sound: []string{"amixer", "pamixer"},
+	light: []string{"xbacklight"},
+	power: []string{"acpi", "upower"},
 }
 
 func printTools() {
-	fmt.Println("SELECTED TOOLS")
-	fmt.Printf("\t  Net: %v\n", cfg.SelectedNetTool)
-	fmt.Printf("\tSound: %v\n", cfg.SelectedSoundTool)
-	fmt.Printf("\tLight: %v\n", cfg.SelectedLightTool)
-	fmt.Printf("\tPower: %v\n", cfg.SelectedPowerTool)
+	var netString = ""
+	for _, val := range tools.net {
+		if val == cfg.SelectedNetTool {
+			netString += " -" + val + "- "
+			continue
+		}
+		netString += " " + val + " "
+	}
+
+	var soundString = ""
+	for _, val := range tools.sound {
+		if val == cfg.SelectedSoundTool {
+			soundString += " -" + val + "- "
+			continue
+		}
+		soundString += " " + val + " "
+	}
+
+	var lightString = ""
+	for _, val := range tools.light {
+		if val == cfg.SelectedLightTool {
+			lightString += " -" + val + "- "
+			continue
+		}
+		lightString += " " + val + " "
+	}
+
+	var powerString = ""
+	for _, val := range tools.power {
+		if val == cfg.SelectedPowerTool {
+			powerString += " -" + val + "- "
+			continue
+		}
+		powerString += " " + val + " "
+	}
+
+	fmt.Println("TOOLS \t -selected-")
 	fmt.Println()
-	fmt.Println("SUPPORTED TOOLS")
-	fmt.Printf("\t  Net: %v\n", netTools)
-	fmt.Printf("\tSound: %v\n", soundTools)
-	fmt.Printf("\tLight: %v\n", lightTools)
-	fmt.Printf("\tPower: %v\n", powerTools)
+	fmt.Println("  Net: " + "[" + netString + "]")
+	fmt.Println("Sound: " + "[" + soundString + "]")
+	fmt.Println("Light: " + "[" + lightString + "]")
+	fmt.Println("Power: " + "[" + powerString + "]")
 }
