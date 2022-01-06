@@ -37,16 +37,16 @@ func sanePrint(s string, e error) {
 		case wrongInput:
 			fallthrough
 		case noSupport:
-			fmt.Print("[INFO] ", e)
+			fmt.Println("[INFO] ", e)
 			os.Exit(1)
 		}
 
 		// otherwise if error is from program
-		fmt.Print("[ERR] ", e)
+		fmt.Println("[ERR] ", e)
 		os.Exit(2)
 	} else if s == "" {
 		// when there is no output
-		fmt.Print("[INF] no output")
+		fmt.Println("[INF] no output")
 		os.Exit(0)
 	} else {
 		// when output is returned
