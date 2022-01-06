@@ -30,6 +30,7 @@ var tools = Tools{
 }
 
 func printTools() {
+	// make network string
 	var netString = ""
 	for _, val := range tools.net {
 		if val == cfg.SelectedNetTool {
@@ -39,6 +40,7 @@ func printTools() {
 		netString += " " + val + " "
 	}
 
+	// make sound string
 	var soundString = ""
 	for _, val := range tools.sound {
 		if val == cfg.SelectedSoundTool {
@@ -48,6 +50,7 @@ func printTools() {
 		soundString += " " + val + " "
 	}
 
+	// make light string
 	var lightString = ""
 	for _, val := range tools.light {
 		if val == cfg.SelectedLightTool {
@@ -57,6 +60,7 @@ func printTools() {
 		lightString += " " + val + " "
 	}
 
+	// make power string
 	var powerString = ""
 	for _, val := range tools.power {
 		if val == cfg.SelectedPowerTool {
@@ -66,6 +70,7 @@ func printTools() {
 		powerString += " " + val + " "
 	}
 
+	// print out the tools' strings
 	fmt.Println("TOOLS \t -selected-")
 	fmt.Println()
 	fmt.Println("  Net: " + "[" + netString + "]")
