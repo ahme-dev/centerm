@@ -185,13 +185,13 @@ func xbacklightSet(n string) (output string, err error) {
 }
 
 func xbacklightInc() (output string, err error) {
-	o, e := exec.Command("xbacklight", "-inc", "10").CombinedOutput()
+	o, e := exec.Command("xbacklight", "-inc", "5").CombinedOutput()
 	output, err = string(o), e
 	return
 }
 
 func xbacklightDec() (output string, err error) {
-	o, e := exec.Command("xbacklight", "-dec", "10").CombinedOutput()
+	o, e := exec.Command("xbacklight", "-dec", "5").CombinedOutput()
 	output, err = string(o), e
 	return
 }
