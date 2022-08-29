@@ -12,7 +12,24 @@ then
 	exit
 fi
 
-# actions
-go build -o "$binName" .
-mv centerm "$binPath"
-cp ./completion/centerm "$completionPath"
+# check if there are binary files
+shouldBuild=true
+for FILE in centerm-amd64 centerm-arm centerm-i386
+do
+	if [ -f "$FILE" ]; then
+		mv "$FILE" "$binName" && shouldBuild=false
+	fi
+done
+if [ -f "$binName" ]; then
+	shouldBuild=false
+fi
+
+# proceed with install
+if $shouldBuild; then
+	go build -o "$binName" . && echo "Built binary."
+else
+	echo "Not building, as a binary was found."
+fi
+
+mv "$binName" "$binPath" && echo "Moving binary."
+cp ./completion/centerm "$completionPath" && echo "Moving bash completion file."
