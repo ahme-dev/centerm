@@ -25,7 +25,7 @@ type Tools struct {
 var tools = Tools{
 	net:   []string{"nmcli", "connmanctl"},
 	sound: []string{"amixer", "pamixer"},
-	light: []string{"xbacklight"},
+	light: []string{"xbacklight", "brightnessctl"},
 	power: []string{"acpi", "upower"},
 }
 

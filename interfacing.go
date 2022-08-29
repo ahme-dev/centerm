@@ -244,6 +244,8 @@ func (c Config) lightStatus() {
 	switch c.SelectedLightTool {
 	case "xbacklight":
 		out, err = xbacklightGet()
+	case "brightnessctl":
+		out, err = brightnessctlGet()
 	default:
 		out, err = "", fmt.Errorf(noTool)
 	}
@@ -255,6 +257,8 @@ func (c Config) lightChange(level string) {
 	switch c.SelectedLightTool {
 	case "xbacklight":
 		out, err = xbacklightSet(level)
+	case "brightnessctl":
+		out, err = brightnessctlSet(level)
 	default:
 		out, err = "", fmt.Errorf(noTool)
 	}
@@ -270,6 +274,13 @@ func (c Config) lightStep(pol string) {
 			out, err = xbacklightInc()
 		case "neg":
 			out, err = xbacklightDec()
+		}
+	case "brightnessctl":
+		switch pol {
+		case "pos":
+			out, err = brightnessctlInc()
+		case "neg":
+			out, err = brightnessctlDec()
 		}
 	default:
 		out, err = "", fmt.Errorf(noTool)

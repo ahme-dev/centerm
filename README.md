@@ -16,6 +16,7 @@ Tasks are done using the supported tools:
 - pamixer
 - amixer
 - xbacklight 
+- brightnessctl
 - upower (partial)
 - acpi
 

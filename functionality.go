@@ -196,6 +196,32 @@ func xbacklightDec() (output string, err error) {
 	return
 }
 
+//brightnessctl
+
+func brightnessctlGet() (output string, err error) {
+	o, e := exec.Command("brightnessctl", "g").CombinedOutput()
+	output, err = string(o), e
+	return
+}
+
+func brightnessctlSet(n string) (output string, err error) {
+	o, e := exec.Command("brightnessctl", "s", n+"%").CombinedOutput()
+	output, err = string(o), e
+	return
+}
+
+func brightnessctlInc() (output string, err error) {
+	o, e := exec.Command("brightnessctl", "s", "+5%").CombinedOutput()
+	output, err = string(o), e
+	return
+}
+
+func brightnessctlDec() (output string, err error) {
+	o, e := exec.Command("brightnessctl", "s", "5%-").CombinedOutput()
+	output, err = string(o), e
+	return
+}
+
 //acpi
 
 func acpiGet() (output string, err error) {
