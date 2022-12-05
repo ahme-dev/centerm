@@ -7,7 +7,7 @@ Centerm is a terminal tool to interact with sound, power, brightness and network
 - Four-liner to copy-paste into the terminal instead:
 
   ```sh
-  git clone --depth=1 https://github.com/ahmedkapro/centerm &&
+  git clone --depth=1 https://github.com/ahmeddots/centerm &&
   cd centerm && chmod +x ./install.sh &&
   sudo ./install.sh &&
   cd .. && rm -rf centerm;
